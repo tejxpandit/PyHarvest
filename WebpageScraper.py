@@ -32,3 +32,11 @@ class WebpageScraper:
     def setSaveFilename(self, filename):
         self.save = True
         self.savefile = filename
+
+    # LOGGING
+    def enableLog(self):
+        self.log = True
+
+    def disableLog(self):
+        self.log = False
+
