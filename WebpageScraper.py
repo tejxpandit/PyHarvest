@@ -22,3 +22,13 @@ class WebpageScraper:
         self.data = None
         self.data_format = None
     
+    # SAVING
+    def enableSave(self):
+        self.save = True
+
+    def disableSave(self):
+        self.save = False
+
+    def setSaveFilename(self, filename):
+        self.save = True
+        self.savefile = filename
