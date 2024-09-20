@@ -40,3 +40,17 @@ class WebpageScraper:
     def disableLog(self):
         self.log = False
 
+    # WAITING between scrapes
+    def enableWait(self):
+        self.wait = True
+
+    def disableWait(self):
+        self.wait = False
+
+    def setWaitTime(self, sleeptime):
+        self.wait = True
+        self.waitperiod = sleeptime
+
+    def setWaitTimeRange(self, min_sleeptime, max_sleeptime):
+        self.wait = True
+        self.waitperiod = random.randrange(min_sleeptime, max_sleeptime)
