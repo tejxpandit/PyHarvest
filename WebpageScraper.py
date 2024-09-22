@@ -59,3 +59,17 @@ class WebpageScraper:
     def getHeader(self):
         header = {'User-Agent': self.user.getUserAgent(),'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
         return header
+    
+    # SCRAPING
+    # Single Link Scrape --> str(html)
+    def getHTML(self, url):
+        html = requests.get(url, headers=self.getHeader())
+        if self.log:
+            print(html.text)
+        if self.wait:
+            time.sleep(self.waitperiod)
+        if self.save:
+            self.data = html.text
+            self.data_format = "str(html)"
+            self.saveFile()
+        return html.text
