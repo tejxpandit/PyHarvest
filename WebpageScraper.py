@@ -73,3 +73,19 @@ class WebpageScraper:
             self.data_format = "str(html)"
             self.saveFile()
         return html.text
+    
+    # Multi-Link Scrape --> [str(html), str(html),....]
+    def getHTMLs(self, urls):
+        htmls = []
+        for url in urls:
+            html = requests.get(url, headers=self.getHeader())
+            if self.log:
+                print(html.text)
+            if self.wait:
+                time.sleep(self.waitperiod)
+            htmls.append(html.text)
+        if self.save:
+            self.data = htmls
+            self.data_format = "list[str(html), str(html),....]"
+            self.saveFile()
+        return htmls
