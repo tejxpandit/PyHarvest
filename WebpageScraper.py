@@ -54,3 +54,8 @@ class WebpageScraper:
     def setWaitTimeRange(self, min_sleeptime, max_sleeptime):
         self.wait = True
         self.waitperiod = random.randrange(min_sleeptime, max_sleeptime)
+
+    # Header Formatting 
+    def getHeader(self):
+        header = {'User-Agent': self.user.getUserAgent(),'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'}
+        return header
