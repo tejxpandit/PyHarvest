@@ -89,3 +89,19 @@ class WebpageScraper:
             self.data_format = "list[str(html), str(html),....]"
             self.saveFile()
         return htmls
+    
+    # Dict Link Scrape --> {"id1" : str(html), "id2" : str(html),....}
+    def getHTMLDict(self, url_dict):
+        html_dict = {}
+        for id, url in url_dict.items():
+            html = requests.get(url, headers=self.getHeader())
+            if self.log:
+                print(html.text)
+            if self.wait:
+                time.sleep(self.waitperiod)
+            html_dict[id] = html.text
+        if self.save:
+            self.data = html_dict
+            self.data_format = 'dict\{"id1" : str(html), "id2" : str(html),....\}'
+            self.saveFile()
+        return html_dict
