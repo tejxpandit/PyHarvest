@@ -105,3 +105,22 @@ class WebpageScraper:
             self.data_format = 'dict\{"id1" : str(html), "id2" : str(html),....\}'
             self.saveFile()
         return html_dict
+    
+    # Dict Multi-Link Scrape --> {"id1" : [str(html), str(html),...], "id2" : [str(html), str(html),...], ....}
+    def getHTMLsDict(self, urls_dict):
+        html_list_dict = {}
+        for id, urls in urls_dict.items():
+            htmls = []
+            for url in urls:
+                html = requests.get(url, headers=self.getHeader())
+                if self.log:
+                    print(html.text)
+                if self.wait:
+                    time.sleep(self.waitperiod)
+                htmls.append(html.text)
+            html_list_dict[id] = html
+        if self.save:
+            self.data = html_list_dict
+            self.data_format = 'dict\{"id1" : list[str(html), str(html),....], "id2" : list[str(html), str(html),....], ....\}'
+            self.saveFile()
+        return html_list_dict
