@@ -124,3 +124,9 @@ class WebpageScraper:
             self.data_format = 'dict\{"id1" : list[str(html), str(html),....], "id2" : list[str(html), str(html),....], ....\}'
             self.saveFile()
         return html_list_dict
+    
+    # Write HTML to pickle file (to avoid rescaping)
+    def saveFile(self):
+        with open(self.savefile, "wb") as fp:
+            pickle.dump(self.data, fp)
+        print('Webpage Data Saved!\nfile-name : "' + self.savefile + '"\ndata-format: "' + self.data_format + '"')
